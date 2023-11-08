@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  
+  //injection de dependances
     return RepositoryProvider <AuthenticationBloc>(
       create: (context) => AuthenticationBloc(
 				userRepository: userRepository

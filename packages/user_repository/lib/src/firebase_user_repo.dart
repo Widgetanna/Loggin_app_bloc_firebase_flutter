@@ -19,6 +19,7 @@ class FirebaseUserRepo implements UserRepository {
     });
   }
 
+//méthode permet à un utilisateur de se connecter en utilisant son e-mail et son mot de passe.
   @override
   Future<void> signIn(String email, String password) async {
     try {
@@ -33,9 +34,11 @@ class FirebaseUserRepo implements UserRepository {
   @override
   Future<MyUser> signUp(MyUser myUser, String password) async {
     try {
+     // création d'un utilisateur avec une adresse e-mail et un mot de passe   
       UserCredential user = await _firebaseAuth.createUserWithEmailAndPassword(
           email: myUser.email, password: password);
-
+   // Une fois que l'utilisateur a été créé avec succès, nous récupérons son identifiant unique (UID) de Firebase
+      // Nous utilisons cette UID pour mettre à jour l'objet MyUser avec l'identifiant de l'utilisateur
       myUser = myUser.copyWith(userId: user.user!.uid);
 
       return myUser;
